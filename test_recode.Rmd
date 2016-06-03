@@ -1,0 +1,79 @@
+---
+title: "Test_recoding"
+author: "Luc"
+date: "Friday, June 03, 2016"
+output: html_document
+---
+---
+title: "Test_recoding"
+author: "Luc"
+date: "Friday, June 03, 2016"
+output: html_document
+---
+I'm trying to write a for loop for recoding several variables with the same value structure. However,it doesn't seem to work as I want it to work. 
+
+Making a test database:
+```{r}
+oldname1 <- c("yes","yes","yes","no","no","no",NA)
+oldname2 <- c("yes", "no","yes", "no","yes", "no",NA)
+data <- data.frame(oldname1,oldname2)
+data
+```
+
+List with vectors including the old name and the new name for the recoded variable:
+```{r}
+names <- list(c("oldname1","newname1"),c("oldname2","newname2"))
+```
+
+for loop for the recoding:
+```{r}
+for(name in names){
+  data[name[2]]<- ifelse(data[name[1]] == "yes", 1, ifelse(data[name[1]]=="no",0,NA))
+}
+```
+
+But now something strange happens with the colomn names:
+```{r}
+data
+
+names(data)
+
+summary(data)
+
+rm(data)
+```
+
+I don't understand why this is happening and how I can fix this?
+
+I would like to this to be the end result:
+```{r message=FALSE}
+library(dplyr)
+oldname1 <- c("yes","yes","yes","no","no","no",NA)
+oldname2 <- c("yes", "no","yes", "no","yes", "no",NA)
+data <- data.frame(oldname1,oldname2)
+
+
+data1 <- data %>% mutate(newname1= ifelse(oldname1=="yes",1,ifelse(oldname1=="no",0,NA)),
+                         newname2= ifelse(oldname2=="yes",1,ifelse(oldname2=="no",0,NA)))
+
+
+data1
+names(data1)
+summary(data1)
+```
+
+I like to loop solution more as this saves a lot of time if I have to recode a lot of variables that have the same value structure.And I also think the code is much cleaner and less prone for errors. But the inconsistency of the names worries me a bit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
