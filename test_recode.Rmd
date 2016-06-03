@@ -4,12 +4,6 @@ author: "Luc"
 date: "Friday, June 03, 2016"
 output: html_document
 ---
----
-title: "Test_recoding"
-author: "Luc"
-date: "Friday, June 03, 2016"
-output: html_document
----
 I'm trying to write a for loop for recoding several variables with the same value structure. However,it doesn't seem to work as I want it to work. 
 
 Making a test database:
